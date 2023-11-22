@@ -1,0 +1,101 @@
+#driveright {
+    background-image: url("/static/img/right.svg");
+    background-size: 180 200;
+    width: 90px;
+    height: 200px;
+    top: 80px;
+    left: 255px;
+}
+
+#driveleft {
+    background-image: url("/static/img/left.svg");
+    background-size: 180 200;
+    width: 90px;
+    height: 200px;
+    top: 80px;
+    left: 15px;
+}
+
+#drivebrake {
+    background-image: url("/static/img/brake.svg");
+    background-size: 300 150;
+    width: 150px;
+    height: 150px;
+    top: 105px;
+    left: 105px;
+}
+
+#driveforward {
+    background-image: url("/static/img/up.svg");
+    background-size: 200 180;
+    width: 200px;
+    height: 90px;
+    top: 15px;
+    left: 80px;
+}
+
+#drivebackward {
+    background-image: url("/static/img/down.svg");
+    background-size: 200 180;
+    width: 200px;
+    height: 90px;
+    top: 255px;
+    left: 80px;
+}
+
+.driveButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;            
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    border: none;
+    background-color: transparent;
+    text-align: center;
+    cursor: pointer;
+    position: absolute;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+    user-select: none;
+}
+
+.container {
+    display: grid; 
+    grid-template-columns: 1fr 1fr; 
+    grid-template-rows: 1fr; 
+    gap: 0px 0px; 
+    grid-template-areas: 
+        "Control Log"; 
+    }
+
+.Log { 
+    grid-area: Log; 
+}
+
+#Controller {
+    position: relative;
+    left: 10px;
+    top: 10px;
+    width: 360px;
+    height: 360px;
+    background-color: transparent;
+    background-image: url('/static/img/controller_bg.svg');
+}
+
+.Control { 
+    grid-area: Control;
+}
+
+@media (pointer: coarse) {
+    *:active {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    * {
+      touch-action: manipulation;
+    }
+  }
+  
+  *:focus {
+    outline: none; /* Optionally remove focus outline */
+  }
