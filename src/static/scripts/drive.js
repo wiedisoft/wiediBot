@@ -1,4 +1,50 @@
+function fetchData() {
+    // Create a new XMLHttpRequest object
+    var xhr = new XMLHttpRequest();
+  
+    // Configure the request (GET or POST, URL, etc.)
+    xhr.open('GET', '/GetBattery', true);
+  
+    // Define what happens on successful completion of the request
+    xhr.onload = function() {
+      if (xhr.status === 200) {
+        // Process the response data here
+        var imgUrl = '';
+        switch (true) {
+            case parseInt(xhr.responseText) > 80:
+                imgUrl = '/static/img/battery_100.svg';
+                break;
+            case parseInt(xhr.responseText) > 60:
+                imgUrl = '/static/img/battery_75.svg';
+                break;
+            case parseInt(xhr.responseText) > 40:
+                imgUrl = '/static/img/battery_50.svg';
+                break;
+            case parseInt(xhr.responseText) > 10:
+                imgUrl = '/static/img/battery_25.svg';
+                break;
+            default:
+                imgUrl = '/static/img/battery_0.svg';
+                break;
+        }
+        document.getElementById('imgBatteryCharge').src = imgUrl;
+        document.getElementById('imgBatteryCharge').title = xhr.responseText + "%";
+      }
+    };
+  
+    // Send the request
+    xhr.send();
+}
+
+
+
 $(document).ready(function() {
+    // Call the fetchData function initially
+    fetchData();
+
+    // Set an interval to execute the fetchData function every 60 seconds (60000 milliseconds)
+    setInterval(fetchData, 60000);
+
     var isTouchedOrPressed = false;
     var debounceTimeout = null;
 

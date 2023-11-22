@@ -1,10 +1,11 @@
 from flask import Flask, render_template
-from waitress import serve
 import signal
 import sys
 import drive as Drive
+import battery
 
 app = Flask(__name__, template_folder="templates", static_url_path="/static")
+
 
 # Define a function to handle Ctrl+C (SIGINT)
 def signal_handler(sig, frame):
@@ -19,11 +20,15 @@ signal.signal(signal.SIGINT, signal_handler)
 def hello():
     return render_template("index.html")
 
+@app.route('/GetBattery')
+def GetBattery():
+    return battery.GetBatteryCharge()
+
 @app.route('/Stop')
 def Stop():
     print('Stop')
     Drive.Stop()
-    return "Nothing"
+    return "Stop"
 
 @app.route('/Forward')
 def Forward():
