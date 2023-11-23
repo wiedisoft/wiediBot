@@ -1,15 +1,12 @@
-function fetchData() {
-    // Create a new XMLHttpRequest object
+function GetBatteryCharge() {
+    // create a new XMLHttpRequest object
     var xhr = new XMLHttpRequest();
-  
-    // Configure the request (GET or POST, URL, etc.)
     xhr.open('GET', '/GetBattery', true);
   
-    // Define what happens on successful completion of the request
     xhr.onload = function() {
       if (xhr.status === 200) {
-        // Process the response data here
         var imgUrl = '';
+        // load the specific picture of battery charge
         switch (true) {
             case parseInt(xhr.responseText) > 80:
                 imgUrl = '/static/img/battery_100.svg';
@@ -32,18 +29,32 @@ function fetchData() {
       }
     };
   
-    // Send the request
+    // send the request
     xhr.send();
 }
 
+function GetVersion(){
+    // create a new XMLHttpRequest object
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', '/GetVersion', true);
 
+    xhr.onload = function() {
+      if (xhr.status === 200) {
+        document.getElementById('Version').innerText = 'Version: ' + xhr.responseText;
+      }
+    }
+    xhr.send();
+}
 
 $(document).ready(function() {
-    // Call the fetchData function initially
-    fetchData();
+    // get the battery charge
+    GetBatteryCharge();
 
-    // Set an interval to execute the fetchData function every 60 seconds (60000 milliseconds)
-    setInterval(fetchData, 60000);
+    // get battery charge every 60 seconds
+    setInterval(GetBatteryCharge, 60000);
+    
+    // get the version
+    GetVersion();
 
     var isTouchedOrPressed = false;
     var debounceTimeout = null;

@@ -66,7 +66,8 @@
     gap: 0px 0px; 
     grid-template-areas: 
         "Header Header"
-        "Control Log"; 
+        "Control Log"
+        "Footer Footer"; 
     }
 
 .Log { 
@@ -75,6 +76,12 @@
 
 .Header { 
     grid-area: Header;
+    background-color: darkgray;
+    text-align: right; 
+}
+
+.Footer { 
+    grid-area: Footer;
     background-color: darkgray;
     text-align: right; 
 }
@@ -92,17 +99,3 @@
 .Control { 
     grid-area: Control;
 }
-
-@media (pointer: coarse) {
-    *:active {
-      -webkit-tap-highlight-color: transparent;
-    }
-
-    * {
-      touch-action: manipulation;
-    }
-  }
-  
-  *:focus {
-    outline: none; /* Optionally remove focus outline */
-  }
